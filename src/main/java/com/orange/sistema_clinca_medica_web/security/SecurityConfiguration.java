@@ -22,7 +22,6 @@ public class SecurityConfiguration {
             "/usuario/login",
             "/usuario/listar",
             "/usuario/cadastrar",
-            "/usuario/all"
     };
     public static final String[] ENDPOINTS_BLACKLIST = {
             "/usuario/teste",
@@ -53,8 +52,8 @@ public class SecurityConfiguration {
                         .requestMatchers(ENDPOINTS_BLACKLIST).authenticated()
                         .requestMatchers(ENDPOINTS_PACIENTE).hasRole("PACIENTE")
                         .requestMatchers(ENDPOINTS_MEDICO).hasRole("MEDICO")
-                        .requestMatchers(ENDPOINTS_USUARIO_PADRAO).hasRole("USUSARIO_PADRAO")
-                        .requestMatchers(ENDPOINTS_USUARIO_ADMIN).hasRole("USUSARIO_ADMINISTRADOR")
+                        .requestMatchers(ENDPOINTS_USUARIO_PADRAO).hasRole("USUARIO_PADRAO")
+                        .requestMatchers(ENDPOINTS_USUARIO_ADMIN).hasRole("USUARIO_ADMINISTRADOR")
                         .anyRequest().denyAll()
                 )
                 .addFilterBefore(userAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);

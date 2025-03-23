@@ -51,4 +51,9 @@ public class UsuarioController {
         return new ResponseEntity<>("Cliente autenticado com sucesso", HttpStatus.OK);
     }
 
+    @GetMapping("/teste/usuario-admin")
+    public ResponseEntity<String> getAutenticacaoUsuarioAdmin() {
+        return new ResponseEntity<>("Cliente autenticado com sucesso", HttpStatus.OK);
+    }
+
 }
