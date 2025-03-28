@@ -39,8 +39,8 @@ public class UsuarioService {
         return new RecoveryJwtTokenDto(jwtTokenService.generateToken(usuarioDetailsImp));
     }
 
-    public Usuario cirarUsuario(UsuarioRequestDTO usuarioRequestDTO) {
-        Usuario novoUsuario = Usuario.builder()
+    public Usuario criarUsuario(UsuarioRequestDTO usuarioRequestDTO) {
+                Usuario novoUsuario = Usuario.builder()
                 .nome(usuarioRequestDTO.nome())
                 .email(usuarioRequestDTO.email())
                 .senha(securityConfiguration.passwordEncoder().encode(usuarioRequestDTO.senha()))

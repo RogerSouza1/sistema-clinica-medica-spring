@@ -19,24 +19,24 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfiguration {
 
     public static final String[] ENDPOINTS_WHITELIST = {
-            "/usuario/login",
-            "/usuario/listar",
-            "/usuario/cadastrar",
+            "/auth/login",
+            "/usuario/cadastrar"
     };
     public static final String[] ENDPOINTS_BLACKLIST = {
-            "/usuario/teste",
+            "/profile/listar",
+            "/auth/teste"
     };
     public static final String[] ENDPOINTS_PACIENTE = {
-            "/usuario/teste/paciente"
+            "/auth/teste/paciente"
     };
     public static final String[] ENDPOINTS_MEDICO = {
-            "/usuario/teste/medico"
+            "/auth/teste/medico"
     };
     public static final String[] ENDPOINTS_USUARIO_PADRAO = {
-            "/usuario/teste/usuario-padrao"
+            "/auth/teste/usuario-padrao"
     };
     public static final String[] ENDPOINTS_USUARIO_ADMIN = {
-            "/usuario/teste/usuario-admin"
+            "/usuario/listar"
     };
 
     @Autowired

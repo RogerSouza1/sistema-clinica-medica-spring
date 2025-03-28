@@ -21,13 +21,6 @@ public class UsuarioController {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    @CrossOrigin(origins = "*", allowedHeaders = "*")
-    @PostMapping("/login")
-    public ResponseEntity<RecoveryJwtTokenDto> autenticarUsuario(@RequestBody UsuarioLoginDTO usuarioLoginDTO) {
-        RecoveryJwtTokenDto token = usuarioService.autenticarUsuario(usuarioLoginDTO);
-        return new ResponseEntity<>(token, HttpStatus.OK);
-    }
-
     @PostMapping("/cadastrar")
     public ResponseEntity<UsuarioResponseDTO> criarUsuario(@RequestBody @Valid UsuarioRequestDTO usuarioRequestDTO) {
 
@@ -38,7 +31,7 @@ public class UsuarioController {
             return new ResponseEntity<>(new UsuarioResponseDTO(usuario), HttpStatus.BAD_REQUEST);
         }
 
-        Usuario usuario = usuarioService.cirarUsuario(usuarioRequestDTO);
+        Usuario usuario = usuarioService.criarUsuario(usuarioRequestDTO);
         return new ResponseEntity<>(new UsuarioResponseDTO(usuario), HttpStatus.CREATED);
     }
 
@@ -50,20 +43,5 @@ public class UsuarioController {
                 .toList();
     }
 
-
-    @GetMapping("/teste")
-    public ResponseEntity<String> getAuthenticationTest() {
-        return new ResponseEntity<>("Autenticado com sucesso", HttpStatus.OK);
-    }
-
-    @GetMapping("/teste/paciente")
-    public ResponseEntity<String> getAutenticacaoPaciente() {
-        return new ResponseEntity<>("Cliente autenticado com sucesso", HttpStatus.OK);
-    }
-
-    @GetMapping("/teste/usuario-admin")
-    public ResponseEntity<String> getAutenticacaoUsuarioAdmin() {
-        return new ResponseEntity<>("Cliente autenticado com sucesso", HttpStatus.OK);
-    }
 
 }
