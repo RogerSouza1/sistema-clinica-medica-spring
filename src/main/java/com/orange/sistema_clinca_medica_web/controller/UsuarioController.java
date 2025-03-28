@@ -1,16 +1,15 @@
 package com.orange.sistema_clinca_medica_web.controller;
 
 import com.orange.sistema_clinca_medica_web.security.RecoveryJwtTokenDto;
-import com.orange.sistema_clinca_medica_web.usuario.UsuarioLoginDTO;
-import com.orange.sistema_clinca_medica_web.usuario.UsuarioRequestDTO;
-import com.orange.sistema_clinca_medica_web.usuario.UsuarioResponseDTO;
-import com.orange.sistema_clinca_medica_web.usuario.UsuarioService;
+import com.orange.sistema_clinca_medica_web.usuario.*;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/usuario")
@@ -18,6 +17,9 @@ public class UsuarioController {
 
     @Autowired
     private UsuarioService usuarioService;
+
+    @Autowired
+    private UsuarioRepository usuarioRepository;
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PostMapping("/login")
@@ -27,9 +29,17 @@ public class UsuarioController {
     }
 
     @PostMapping("/cadastrar")
-    public ResponseEntity<Void> criarUsuario(@RequestBody UsuarioRequestDTO usuarioRequestDTO) {
-        usuarioService.cirarUsuario(usuarioRequestDTO);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+    public ResponseEntity<UsuarioResponseDTO> criarUsuario(@RequestBody @Valid UsuarioRequestDTO usuarioRequestDTO) {
+
+        Optional<Usuario> usuarioOptional = usuarioRepository.findByEmail(usuarioRequestDTO.email());
+
+        if (usuarioOptional.isPresent()) {
+            Usuario usuario = usuarioOptional.get();
+            return new ResponseEntity<>(new UsuarioResponseDTO(usuario), HttpStatus.BAD_REQUEST);
+        }
+
+        Usuario usuario = usuarioService.cirarUsuario(usuarioRequestDTO);
+        return new ResponseEntity<>(new UsuarioResponseDTO(usuario), HttpStatus.CREATED);
     }
 
     @GetMapping("/listar")

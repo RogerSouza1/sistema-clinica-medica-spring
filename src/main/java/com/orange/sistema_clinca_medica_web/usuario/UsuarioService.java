@@ -39,7 +39,7 @@ public class UsuarioService {
         return new RecoveryJwtTokenDto(jwtTokenService.generateToken(usuarioDetailsImp));
     }
 
-    public void cirarUsuario(UsuarioRequestDTO usuarioRequestDTO) {
+    public Usuario cirarUsuario(UsuarioRequestDTO usuarioRequestDTO) {
         Usuario novoUsuario = Usuario.builder()
                 .nome(usuarioRequestDTO.nome())
                 .email(usuarioRequestDTO.email())
@@ -47,7 +47,7 @@ public class UsuarioService {
                 .cargo(CargoNome.valueOf(usuarioRequestDTO.cargo().toUpperCase()))
                 .build();
 
-        usuarioRepository.save(novoUsuario);
+        return usuarioRepository.save(novoUsuario);
     }
 
     public List<Usuario> getUsuarios() {
