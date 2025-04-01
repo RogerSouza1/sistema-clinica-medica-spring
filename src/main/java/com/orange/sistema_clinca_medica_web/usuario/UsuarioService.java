@@ -5,6 +5,7 @@ import com.orange.sistema_clinca_medica_web.security.JwtTokenService;
 import com.orange.sistema_clinca_medica_web.security.RecoveryJwtTokenDto;
 import com.orange.sistema_clinca_medica_web.security.SecurityConfiguration;
 import com.orange.sistema_clinca_medica_web.security.UsuarioDetailsImp;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
