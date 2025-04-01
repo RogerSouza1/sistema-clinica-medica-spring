@@ -32,4 +32,9 @@ public class UsuarioDetailsImp implements UserDetails {
     public String getUsername() {
         return usuario.getEmail();
     }
+
+    @Override
+    public boolean isEnabled() {
+        return usuario.isEnable();
+    }
 }

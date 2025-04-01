@@ -36,7 +36,8 @@ public class SecurityConfiguration {
             "/auth/teste/usuario-padrao"
     };
     public static final String[] ENDPOINTS_USUARIO_ADMIN = {
-            "/usuario/listar"
+            "/usuario/listar",
+            "/usuario/**"
     };
 
     @Autowired

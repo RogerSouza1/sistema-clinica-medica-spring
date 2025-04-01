@@ -36,4 +36,10 @@ public class Usuario {
     @NotNull
     private CargoNome cargo;
 
+    @NotNull
+    private Boolean isEnable;
+
+    public Boolean isEnable() {
+        return isEnable;
+    }
 }
